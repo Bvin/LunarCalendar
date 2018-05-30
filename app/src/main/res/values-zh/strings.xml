@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LunarCalendar</string>
+    <string name="app_name">日程</string>
 
     <string-array name="lunar_week_string_array">
         <item>日</item>

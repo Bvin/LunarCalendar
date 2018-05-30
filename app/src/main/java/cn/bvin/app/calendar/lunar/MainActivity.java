@@ -28,18 +28,26 @@ public class MainActivity extends AppCompatActivity {
                 //做时间换算
 
                 java.util.Calendar curCalendar = java.util.Calendar.getInstance();
-                int weekOfYear = curCalendar.get(java.util.Calendar.WEEK_OF_YEAR);
-                int weekOfMonth = curCalendar.get(java.util.Calendar.WEEK_OF_MONTH);
-                Log.d("cur", weekOfYear+": "+weekOfMonth);
+                int curDay = curCalendar.get(java.util.Calendar.DAY_OF_YEAR);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
                 try {
                     Date date = sdf.parse(calendar.getYear()+"-"+calendar.getMonth()+"-"+calendar.getDay());
                     java.util.Calendar theCalendar = java.util.Calendar.getInstance();
                     theCalendar.setTime(date);
-                    int theWeekOfYear = theCalendar.get(java.util.Calendar.WEEK_OF_YEAR);
-                    int theWeekOfMonth = theCalendar.get(java.util.Calendar.WEEK_OF_MONTH);
-                    Log.d("the", theWeekOfYear+": "+theWeekOfMonth);
-                    tvTips.setText(sdf.format(date));
+                    int theDay = theCalendar.get(java.util.Calendar.DAY_OF_YEAR);
+                    int offset = theDay - curDay;
+                    if (offset<30) {//几周几天
+                        Log.d("the", curDay + ": " + theDay + ">" + (offset / 7) + ">>" + (offset % 7));
+                        int offsetOfWeek = offset / 7;
+                        int remainderDay = offset % 7;
+                        tvTips.setText("距彼日"+offsetOfWeek+"周又"+remainderDay+"日");
+                    }else {
+                        int curMonth = curCalendar.get(java.util.Calendar.MONTH);
+                        int theMonth = theCalendar.get(java.util.Calendar.MONTH);
+
+                        tvTips.setText("距彼日"+(theMonth-curMonth)+"月");
+                    }
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

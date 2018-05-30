@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="cn.bvin.app.calendar.lunar.MainActivity">
 
     <com.haibin.calendarview.CalendarView
+        android:id="@+id/calendar_view"
         app:week_bar_view="cn.bvin.app.calendar.lunar.widget.LunarWeekBar"
         app:week_view="cn.bvin.app.calendar.lunar.widget.LunarWeekView"
         app:month_view="cn.bvin.app.calendar.lunar.widget.LunarMonthView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-</FrameLayout>
+<TextView
+    android:id="@+id/tv_tips"
+    android:text="距离端午节还有3天"
+    android:layout_margin="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+</LinearLayout>

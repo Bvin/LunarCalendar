@@ -9,6 +9,8 @@
 
     <com.haibin.calendarview.CalendarView
         app:week_bar_view="cn.bvin.app.calendar.lunar.widget.LunarWeekBar"
+        app:week_view="cn.bvin.app.calendar.lunar.widget.LunarWeekView"
+        app:month_view="cn.bvin.app.calendar.lunar.widget.LunarMonthView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

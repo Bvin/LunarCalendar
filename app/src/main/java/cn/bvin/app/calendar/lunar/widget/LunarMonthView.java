@@ -21,8 +21,8 @@ public class LunarMonthView extends MonthView {
 
     public LunarMonthView(Context context) {
         super(context);
-        mTextPaint.setTextSize(8);
-        mTextPaint.setColor(0xffffffff);
+        mTextPaint.setTextSize(dipToPx(context, 8));
+        mTextPaint.setColor(0xffFFFFFF);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setFakeBoldText(true);
 
@@ -35,6 +35,9 @@ public class LunarMonthView extends MonthView {
         mPadding = dipToPx(getContext(), 4);
         Paint.FontMetrics metrics = mSchemeBasicPaint.getFontMetrics();
         mSchemeBaseLine = mRadio - metrics.descent + (metrics.bottom - metrics.top) / 2 + dipToPx(getContext(), 1);
+
+
+        mCurMonthTextPaint.setFakeBoldText(false);
     }
 
     /**
@@ -52,7 +55,7 @@ public class LunarMonthView extends MonthView {
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
         mSelectedPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(x + mPadding, mPadding, x + mItemWidth - mPadding, mItemHeight - mPadding, mSelectedPaint);
+        canvas.drawRect(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding, mSelectedPaint);
         return true;
     }
 
@@ -60,11 +63,11 @@ public class LunarMonthView extends MonthView {
     protected void onDrawScheme(Canvas canvas, Calendar calendar, int x, int y) {
         mSchemeBasicPaint.setColor(calendar.getSchemeColor());
 
-        canvas.drawCircle(x + mItemWidth - mPadding - mRadio / 2, mPadding + mRadio, mRadio, mSchemeBasicPaint);
+        canvas.drawCircle(x + mItemWidth - mPadding - mRadio / 2, y + mPadding + mRadio, mRadio, mSchemeBasicPaint);
 
         canvas.drawText(calendar.getScheme(),
                 x + mItemWidth - mPadding - mRadio / 2 - getTextWidth(calendar.getScheme()) / 2,
-                mPadding + mSchemeBaseLine, mTextPaint);
+                y + mPadding + mSchemeBaseLine, mTextPaint);
     }
 
     /**
